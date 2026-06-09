@@ -30,7 +30,7 @@ import { authService } from "@/services/api/endpoints/auth";
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { user, , isLoading: authLoading } = authStore();
+  const { user,  isLoading: authLoading } = authStore();
 
   const [links, setLinks] = useState<LinkItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
