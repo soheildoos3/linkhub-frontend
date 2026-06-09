@@ -8,12 +8,6 @@ const nextConfig: NextConfig = {
     unoptimized: false,
   },
 
-  i18n: {
-    locales: ["fa"],
-    defaultLocale: "fa",
-    localeDetection: false,
-  },
-
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
@@ -25,6 +19,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
   typescript: {
     ignoreBuildErrors: true,
   },
