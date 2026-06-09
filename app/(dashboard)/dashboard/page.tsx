@@ -26,11 +26,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { authService } from "@/services/api/endpoints/auth";
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { user,  isLoading: authLoading } = authStore();
+  const { user, logout, isLoading: authLoading } = authStore();
 
   const [links, setLinks] = useState<LinkItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -114,7 +113,7 @@ export default function DashboardPage() {
   };
 
   const handleLogout = async () => {
-    await authService.logout();
+    await logout();
     router.push("/");
   };
 
