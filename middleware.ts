@@ -1,11 +1,15 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { cookies } from "next/headers";
 
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get("access_token")?.value;
+export async function middleware(request: NextRequest) {
+  // روش جدید: از next/headers برای دسترسی به کوکی
+  const cookieStore = await cookies();
+  const token = cookieStore.get("access_token")?.value;
+  
   const { pathname } = request.nextUrl;
 
-  // مسیرهای عمومی (بدون نیاز به احراز هویت)
+  // مسیرهای عمومی
   const publicPaths = ["/login", "/register", "/"];
   const isPublicPath = publicPaths.includes(pathname);
   
@@ -25,7 +29,7 @@ export function middleware(request: NextRequest) {
     const loginUrl = new URL("/login", request.url);
     return NextResponse.redirect(loginUrl);
   }
-
+  console.log(token)
   // بقیه موارد رو آزاد بذار
   return NextResponse.next();
 }
