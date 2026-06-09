@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { userService } from "@/services/api/endpoints/user";
 import { UserRegister } from "@/types/auth";
+import { User } from "@/types/user"; 
 
 type RegisterState = {
   isLoading: boolean;
@@ -9,7 +10,7 @@ type RegisterState = {
     email: string;
     server: string;
   };
-  register: (data: UserRegister) => Promise<void>;
+  register: (data: UserRegister) => Promise<User>;  
   clearFieldError: (field: "username" | "email" | "server") => void;
 };
 
@@ -27,7 +28,7 @@ export const registerStore = create<RegisterState>((set) => ({
     try {
       const user = await userService.register(data);
       set({ isLoading: false });
-      return user;
+      return user; 
     } catch (err: any) {
       const errorDetail = err?.detail || "";
       
