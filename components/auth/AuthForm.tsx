@@ -154,7 +154,9 @@ export function AuthForm({
                 />
                 {(errors.username || serverErrors?.username) && (
                   <p className="text-destructive mt-1 text-xs">
-                    {errors.username?.message || serverErrors?.username}
+                    {errors.username?.message
+                      ? String(errors.username.message)
+                      : serverErrors?.username}
                   </p>
                 )}
                 <p className="text-muted-foreground text-xs dark:text-gray-500">
@@ -187,7 +189,9 @@ export function AuthForm({
               />
               {(errors.email || serverErrors?.email) && (
                 <p className="text-destructive mt-1 text-xs">
-                  {errors.email?.message || serverErrors?.email}
+                  {errors.email?.message
+                    ? String(errors.email.message)
+                    : serverErrors?.email}
                 </p>
               )}
             </div>
@@ -228,7 +232,7 @@ export function AuthForm({
               </div>
               {errors.password && (
                 <p className="text-destructive mt-1 text-xs">
-                  {errors.password.message}
+                  {String(errors.password.message)}
                 </p>
               )}
               <p className="text-muted-foreground text-xs dark:text-gray-500">
@@ -273,7 +277,7 @@ export function AuthForm({
                 </div>
                 {errors.confirm_password && (
                   <p className="text-destructive mt-1 text-xs">
-                    {errors.confirm_password.message}
+                    {String(errors.confirm_password.message)}
                   </p>
                 )}
               </div>
