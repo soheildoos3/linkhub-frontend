@@ -139,7 +139,7 @@ export function EditProfileModal({
     if (formData.namelink !== user.namelink)
       submitData.namelink = formData.namelink || undefined;
 
-    if (formData.username !== user.username) {
+    if (formData.username && formData.username !== user.username) {
       submitData.username = normalizeUsername(formData.username);
       usernameChanged = true;
     }
